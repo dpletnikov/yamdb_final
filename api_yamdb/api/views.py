@@ -3,32 +3,46 @@ from reviews.models import (Category, Genre, Title,
                             Review,
                             TitletFilter)
 from users.models import User
+
 from django.shortcuts import get_object_or_404
+
 from .serializers import (CategorySerializer,
                           GenreSerializer, TitleSerializer, TitleGetSerializer,
                           CommentSerializer, ReviewSerializer,
                           UserSerializer, MeSerializer, SignUpSerializer,
                           TokenSerializer)
+
 from django_filters.rest_framework import DjangoFilterBackend
+
 from rest_framework import filters, status
+
 from rest_framework.pagination import PageNumberPagination
+
 from rest_framework import mixins, viewsets
+
 from rest_framework import serializers
 # from api.validators import check_conformity_title_and_review
 from rest_framework.decorators import action, api_view
-from .permissions import (ReviewCommentPermission,
+
+from .permissions import (AuthorAndStaffOrReadOnly,
+                          IsAdminOrReadOnly,
                           GenreCategoryPermission,
                           OwnerOrAdmins,
-                          IsAdminOrReadOnly,
-                          AuthorAndStaffOrReadOnly)
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from django.db import IntegrityError
-from django.core.mail import send_mail
-import uuid
-from rest_framework_simplejwt.tokens import AccessToken
-from django.db.models import Avg
+                          ReviewCommentPermission)
 
+from rest_framework.permissions import IsAuthenticated
+
+from rest_framework.response import Response
+
+from django.db import IntegrityError
+
+from django.core.mail import send_mail
+
+import uuid
+
+from rest_framework_simplejwt.tokens import AccessToken
+
+from django.db.models import Avg
 
 class ListCreateDestroyViewSet(mixins.ListModelMixin,
                                mixins.CreateModelMixin,

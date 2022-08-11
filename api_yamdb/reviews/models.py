@@ -1,12 +1,15 @@
 from django.db import models
 # from django.core.validators import MaxValueValidator, MinValueValidator
 from django.core.exceptions import ValidationError
+
 from django.utils import timezone
+
 from users.models import User
+
 from django_filters import rest_framework as filters
 
 
-def validate_even(value):
+def falidate_even(value):
     if value > timezone.now().year:
         raise ValidationError((' %(value)s назад в будущее!'),
                               params={'value': value},)

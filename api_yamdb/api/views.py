@@ -44,6 +44,7 @@ from rest_framework_simplejwt.tokens import AccessToken
 
 from django.db.models import Avg
 
+
 class ListCreateDestroyViewSet(mixins.ListModelMixin,
                                mixins.CreateModelMixin,
                                mixins.DestroyModelMixin,

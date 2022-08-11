@@ -9,7 +9,7 @@ from users.models import User
 from django_filters import rest_framework as filters
 
 
-def falidate_even(value):
+def validate_even(value):
     if value > timezone.now().year:
         raise ValidationError((' %(value)s назад в будущее!'),
                               params={'value': value},)

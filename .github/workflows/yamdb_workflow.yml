@@ -14,13 +14,13 @@ jobs:
         python-version: 3.7
 
     - name: Install dependencies
-      run: | 
+      run: |
+        cd api_yamdb/
         # обновление pip
         python -m pip install --upgrade pip 
         # установка flake8 и его плагинов
         pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
         # установка зависимостей
-        cd api_yamdb/
         pip install -r requirements.txt 
     - name: Test with flake8 and django tests
       run: |
